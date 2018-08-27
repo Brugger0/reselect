@@ -23,6 +23,8 @@ export function defaultMemoize(func, equalityCheck = defaultEqualityCheck) {
   let lastResult = null
   // we reference arguments instead of spreading them for performance reasons
   return function () {
+    console.log(lastArgs, arguments);
+    console.log(areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments));
     if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) {
       // apply arguments instead of spreading for performance.
       lastResult = func.apply(null, arguments)
